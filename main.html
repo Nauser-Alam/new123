@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>UPSC Answer-Writer - Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">UPSC Answer-Writer</div>
+    <div id="welcome" class="welcome">Welcome —</div>
+    <nav>
+      <button id="tab-home" class="tab active">Home</button>
+      <button id="tab-revision" class="tab">Revision</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- Home -->
+    <section id="home" class="page">
+      <div class="dashboard">
+        <div class="card large">
+          <h3>Performance (Last 30 days)</h3>
+          <canvas id="scoreLineChart"></canvas>
+        </div>
+
+        <div class="card small">
+          <h3>Daily Stack (like GitHub)</h3>
+          <div id="stackGrid" class="stack-grid"></div>
+        </div>
+
+        <div class="card small">
+          <h3>Subject attempt breakdown</h3>
+          <canvas id="subjectPie"></canvas>
+        </div>
+
+        <div class="card large suggestion">
+          <h3>Suggestion Box</h3>
+          <div id="suggestions">Strengths and weaknesses will appear here after evaluation.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Revision -->
+    <section id="revision" class="page hidden">
+      <div class="card">
+        <h3>Pick a subject to revise</h3>
+        <select id="subjectSelect">
+          <option value="">-- Select Subject --</option>
+          <option value="History">History (Ancient/Medieval/Modern)</option>
+          <option value="Polity">Polity</option>
+          <option value="Geography">Geography</option>
+          <option value="Economics">Economics</option>
+          <option value="Sociology">Sociology</option>
+        </select>
+
+        <div id="questionList" class="question-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Question modal -->
+  <div id="questionModal" class="modal hidden">
+    <div class="modal-content">
+      <button class="close" id="closeModal">&times;</button>
+      <h3 id="modalSubject">Question</h3>
+      <div id="questionText" class="question-text"></div>
+      <textarea id="answerText" placeholder="Write your answer here..." rows="12"></textarea>
+      <div class="modal-actions">
+        <button id="submitAnswerBtn" class="primary">Submit & Evaluate</button>
+      </div>
+      <div id="evalResult" class="eval-result"></div>
+    </div>
+  </div>
+
+  <!-- Registration modal -->
+  <div id="registerModal" class="modal hidden">
+    <div class="modal-content small">
+      <h3>Register</h3>
+      <label>Name</label>
+      <input id="regName" type="text" placeholder="Your name (e.g. Nauser)" />
+      <label>Branch / Optional</label>
+      <input id="regBranch" type="text" placeholder="Optional" />
+      <label>Semester / Optional</label>
+      <input id="regSem" type="text" placeholder="Optional" />
+      <div class="modal-actions">
+        <button id="registerBtn" class="primary">Register</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="action.js"></script>
+</body>
+</html>
