@@ -6,7 +6,7 @@
 */
 
 const BACKEND_URL =
-  "https://script.google.com/macros/s/AKfycbyrf6W0jnJcejhTPL7V8bTAf2jggbtC6aLToJXmCFluQRZheaChUXLR-nc86OZK1_5Ivg/exec"; // <-- REPLACE
+  "https://script.google.com/macros/s/AKfycbwev7s1R2kyfhYYS9VSNHuxzN1Mo6paAJLhkvWEtt1hWtUsQMZiiaZtD36zH-cnn0qHWQ/exec"; // <-- REPLACE
 
 // Basic state
 let currentUser = null;
@@ -22,12 +22,27 @@ let questionsDB = {
       title: "Assess causes of 1857 revolt.",
       text: "Assess causes of 1857 revolt.",
     },
+    {
+      id: "hist-3",
+      title: "Evaluate the role of Ashoka in spread of Buddhism.",
+      text: "Evaluate the role of Ashoka in spread of Buddhism.",
+    },
   ],
   Polity: [
     {
       id: "poly-1",
       title: "Explain separation of powers in Indian Constitution.",
       text: "Explain separation of powers in Indian Constitution.",
+    },
+    {
+      id: "poly-2",
+      title: "Discuss fundamental duties and their significance.",
+      text: "Discuss fundamental duties and their significance.",
+    },
+    {
+      id: "poly-3",
+      title: "Examine the role of Governor in Indian federal system.",
+      text: "Examine the role of Governor in Indian federal system.",
     },
   ],
   Geography: [
@@ -36,6 +51,16 @@ let questionsDB = {
       title: "Explain monsoon mechanism for Indian subcontinent.",
       text: "Explain monsoon mechanism for Indian subcontinent.",
     },
+    {
+      id: "geo-2",
+      title: "Discuss distribution of natural vegetation in India.",
+      text: "Discuss distribution of natural vegetation in India.",
+    },
+    {
+      id: "geo-3",
+      title: "Examine the factors influencing settlement patterns in India.",
+      text: "Examine the factors influencing settlement patterns in India.",
+    },
   ],
   Economics: [
     {
@@ -43,12 +68,32 @@ let questionsDB = {
       title: "Explain inflation targeting and its pros/cons.",
       text: "Explain inflation targeting and its pros/cons.",
     },
+    {
+      id: "eco-2",
+      title: "Discuss LPG reforms of 1991 and their impact.",
+      text: "Discuss LPG reforms of 1991 and their impact.",
+    },
+    {
+      id: "eco-3",
+      title: "Examine the problem of unemployment in India.",
+      text: "Examine the problem of unemployment in India.",
+    },
   ],
   Sociology: [
     {
       id: "soc-1",
       title: "Discuss urbanization trends and impact in India.",
       text: "Discuss urbanization trends and impact in India.",
+    },
+    {
+      id: "soc-2",
+      title: "Examine caste and class as determinants of social structure.",
+      text: "Examine caste and class as determinants of social structure.",
+    },
+    {
+      id: "soc-3",
+      title: "Explain role of media in social change.",
+      text: "Explain role of media in social change.",
     },
   ],
 };
@@ -148,16 +193,16 @@ function registerUser() {
   currentUser = user;
   localStorage.setItem("upsc_user", JSON.stringify(user));
   updateWelcome();
-
-  // ✅ Close the modal after registration
   closeRegisterModal();
 
-  // send to backend (store in sheet)
-  fetch(BACKEND_URL + "?action=register", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ user }),
-  }).catch((err) => console.warn("register backend failed", err));
+  const params = new URLSearchParams({
+    action: "register",
+    user: JSON.stringify(user),
+  });
+  fetch(BACKEND_URL + "?" + params.toString())
+    .then((resp) => resp.json())
+    .then((data) => console.log("Registered:", data))
+    .catch((err) => console.warn("register backend failed", err));
 }
 
 function updateWelcome() {
@@ -261,7 +306,17 @@ function initCharts() {
   pieChart = new Chart(pieCtx, {
     type: "pie",
     data: { labels: defaultPieLabels, datasets: [{ data: defaultPieData }] },
-    options: { responsive: true, maintainAspectRatio: false },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: {
+        legend: {
+          labels: {
+            padding: 10,
+          },
+        },
+      },
+    },
   });
 
   // create dummy daily stack UI
@@ -303,16 +358,29 @@ function updatePieChart(labels, data) {
   pieChart.update();
 }
 
-function buildDummyStack() {
+function buildDummyStack(dailyActivity = []) {
   const grid = document.getElementById("stackGrid");
   grid.innerHTML = "";
-  // create 14 columns x 4 rows => 56 days approx
-  for (let i = 0; i < 56; i++) {
+
+  // fallback: 56 empty
+  const activity =
+    dailyActivity.length === 56
+      ? dailyActivity.slice().reverse()
+      : Array(56).fill(0);
+
+  activity.forEach((count) => {
     const div = document.createElement("div");
-    const level = 0; // ✅ start with all empty (no activity yet)
-    div.className = "stack-day " + (level > 0 ? `level-${level}` : "");
+    let levelClass = "";
+
+    if (count > 0) {
+      if (count >= 5) levelClass = "level-3"; // high activity
+      else if (count >= 3) levelClass = "level-2"; // medium
+      else levelClass = "level-1"; // low
+    }
+
+    div.className = "stack-day " + levelClass;
     grid.appendChild(div);
-  }
+  });
 }
 
 /////////////// Backend calls ////////////////////
@@ -339,6 +407,9 @@ async function fetchDashboard() {
     }
     if (json.suggestions) {
       document.getElementById("suggestions").textContent = json.suggestions;
+    }
+    if (json.dailyActivity) {
+      buildDummyStack(json.dailyActivity);
     }
   } catch (e) {
     // fall back to demo data when offline
@@ -377,32 +448,27 @@ async function submitAnswerHandler() {
   document.getElementById("submitAnswerBtn").disabled = true;
   document.getElementById("evalResult").textContent = "Evaluating...";
 
+  const payload = {
+    action: "submitAnswer",
+    userid: currentUser.id,
+    userName: currentUser.name,
+    questionId: q.id,
+    subject: q.subject,
+    questionText: q.text,
+    answerText: answer,
+    timestamp: new Date().toISOString(),
+  };
+
   try {
-    // send to backend; backend will call Gemini & update sheet
-    const payload = {
-      action: "submitAnswer",
-      userid: currentUser.id,
-      userName: currentUser.name,
-      questionId: q.id,
-      subject: q.subject,
-      questionText: q.text,
-      answerText: answer,
-      timestamp: new Date().toISOString(),
-    };
-
-    const res = await fetch(BACKEND_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-
+    const params = new URLSearchParams(payload);
+    const res = await fetch(BACKEND_URL + "?" + params.toString());
     if (!res.ok) throw new Error("server error");
     const result = await res.json();
-    // result expected: {score: x, feedback: "...", updatedDashboard: {...} }
+
     document.getElementById(
       "evalResult"
     ).textContent = `Score: ${result.score}\nFeedback: ${result.feedback}`;
-    // update dashboard client-side if returned
+
     if (result.updatedDashboard) {
       if (result.updatedDashboard.scores) {
         updateLineChart(
@@ -420,6 +486,9 @@ async function submitAnswerHandler() {
         document.getElementById("suggestions").textContent =
           result.updatedDashboard.suggestions;
       }
+      if (result.updatedDashboard.dailyActivity) {
+        buildDummyStack(result.updatedDashboard.dailyActivity);
+      }
     }
   } catch (err) {
     console.error(err);
@@ -428,3 +497,189 @@ async function submitAnswerHandler() {
     document.getElementById("submitAnswerBtn").disabled = false;
   }
 }
+// Get modal and close button elements
+const modal = document.getElementById("questionModal");
+const closeBtn = document.getElementById("closeModal");
+
+// Close modal when clicking on the close button
+closeBtn.addEventListener("click", () => {
+  modal.classList.add("hidden"); // hides modal
+});
+document.getElementById("themeToggle").addEventListener("click", () => {
+  const root = document.documentElement;
+  const isDark = root.getAttribute("data-theme") === "dark";
+  root.setAttribute("data-theme", isDark ? "light" : "dark");
+
+  // Optional: persist preference in localStorage
+  localStorage.setItem("theme", isDark ? "light" : "dark");
+});
+
+// Load saved preference on startup
+window.addEventListener("DOMContentLoaded", () => {
+  const saved = localStorage.getItem("theme");
+  if (saved) {
+    document.documentElement.setAttribute("data-theme", saved);
+  }
+});
+function getChartColors() {
+  const styles = getComputedStyle(document.documentElement);
+  return {
+    bg: styles.getPropertyValue("--chart-bg").trim(),
+    grid: styles.getPropertyValue("--chart-grid").trim(),
+    label: styles.getPropertyValue("--chart-label").trim(),
+  };
+}
+
+function buildLineChart(ctx, data) {
+  const colors = getChartColors();
+  return new Chart(ctx, {
+    type: "line",
+    data,
+    options: {
+      plugins: {
+        legend: {
+          labels: { color: colors.label },
+        },
+      },
+      scales: {
+        x: {
+          ticks: { color: colors.label },
+          grid: { color: colors.grid },
+        },
+        y: {
+          ticks: { color: colors.label },
+          grid: { color: colors.grid },
+        },
+      },
+    },
+  });
+}
+
+function buildPieChart(ctx, data) {
+  const colors = getChartColors();
+  return new Chart(ctx, {
+    type: "pie",
+    data,
+    options: {
+      plugins: {
+        legend: {
+          labels: { color: colors.label },
+        },
+      },
+    },
+  });
+}
+document.getElementById("themeToggle").addEventListener("click", () => {
+  const root = document.documentElement;
+  const isDark = root.getAttribute("data-theme") === "dark";
+  root.setAttribute("data-theme", isDark ? "light" : "dark");
+
+  // refresh chart colors
+  lineChart.options.scales.x.ticks.color = getChartColors().label;
+  lineChart.options.scales.y.ticks.color = getChartColors().label;
+  lineChart.options.scales.x.grid.color = getChartColors().grid;
+  lineChart.options.scales.y.grid.color = getChartColors().grid;
+  lineChart.options.plugins.legend.labels.color = getChartColors().label;
+  lineChart.update();
+
+  pieChart.options.plugins.legend.labels.color = getChartColors().label;
+  pieChart.update();
+
+  localStorage.setItem("theme", isDark ? "light" : "dark");
+});
+///////////////////////////////////
+function applyCanvasBackground(ctx) {
+  const styles = getComputedStyle(document.documentElement);
+  ctx.canvas.style.background = styles
+    .getPropertyValue("--chart-canvas-bg")
+    .trim();
+}
+
+function buildLineChart(ctx, data) {
+  const colors = getChartColors();
+  applyCanvasBackground(ctx);
+
+  return new Chart(ctx, {
+    type: "line",
+    data,
+    options: {
+      plugins: {
+        legend: {
+          labels: { color: colors.label },
+        },
+      },
+      scales: {
+        x: {
+          ticks: { color: colors.label },
+          grid: { color: colors.grid },
+        },
+        y: {
+          ticks: { color: colors.label },
+          grid: { color: colors.grid },
+        },
+      },
+    },
+  });
+}
+
+function buildPieChart(ctx, data) {
+  const colors = getChartColors();
+  applyCanvasBackground(ctx);
+
+  return new Chart(ctx, {
+    type: "pie",
+    data,
+    options: {
+      plugins: {
+        legend: {
+          labels: { color: colors.label },
+        },
+      },
+    },
+  });
+}
+////////////////////////////////
+document.getElementById("themeToggle").addEventListener("click", () => {
+  const root = document.documentElement;
+  const isDark = root.getAttribute("data-theme") === "dark";
+  root.setAttribute("data-theme", isDark ? "light" : "dark");
+
+  const colors = getChartColors();
+
+  // Update line chart
+  applyCanvasBackground(lineChart.ctx);
+  lineChart.options.scales.x.ticks.color = colors.label;
+  lineChart.options.scales.y.ticks.color = colors.label;
+  lineChart.options.scales.x.grid.color = colors.grid;
+  lineChart.options.scales.y.grid.color = colors.grid;
+  lineChart.options.plugins.legend.labels.color = colors.label;
+  lineChart.update();
+
+  // Update pie chart
+  applyCanvasBackground(pieChart.ctx);
+  pieChart.options.plugins.legend.labels.color = colors.label;
+  pieChart.update();
+
+  localStorage.setItem("theme", isDark ? "light" : "dark");
+});
+////////////////////////////////////
+// Registration modal
+const registerModal = document.getElementById("registerModal");
+const closeRegisterModalBtn = document.getElementById("closeRegisterModal");
+
+// Open modal function (example)
+function openRegisterModal() {
+  registerModal.classList.remove("hidden");
+}
+
+// Close modal on clicking the close button
+closeRegisterModalBtn.addEventListener("click", () => {
+  registerModal.classList.add("hidden");
+});
+
+// Optional: close modal on clicking outside the modal content
+registerModal.addEventListener("click", (e) => {
+  if (e.target === registerModal) {
+    registerModal.classList.add("hidden");
+  }
+});

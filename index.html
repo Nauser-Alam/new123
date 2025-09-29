@@ -15,6 +15,7 @@
     <nav>
       <button id="tab-home" class="tab active">Home</button>
       <button id="tab-revision" class="tab">Revision</button>
+      <button id="themeToggle" class="tab">🌙</button>
     </nav>
   </header>
 
@@ -28,7 +29,7 @@
         </div>
 
         <div class="card small">
-          <h3>Daily Stack (like GitHub)</h3>
+          <h3>Daily Stack</h3>
           <div id="stackGrid" class="stack-grid"></div>
         </div>
 
@@ -76,21 +77,36 @@
     </div>
   </div>
 
-  <!-- Registration modal -->
-  <div id="registerModal" class="modal hidden">
-    <div class="modal-content small">
-      <h3>Register</h3>
-      <label>Name</label>
-      <input id="regName" type="text" placeholder="Your name (e.g. Nauser)" />
-      <label>Branch / Optional</label>
-      <input id="regBranch" type="text" placeholder="Optional" />
-      <label>Semester / Optional</label>
-      <input id="regSem" type="text" placeholder="Optional" />
+<!-- Registration Modal -->
+<div id="registerModal" class="modal hidden">
+  <div class="modal-content small">
+    <button class="close" id="closeRegisterModal">&times;</button>
+    <h2>Register</h2>
+    <p class="modal-subtitle">Create your profile to track your UPSC answer performance</p>
+
+    <form id="registerForm">
+      <div class="form-group">
+        <label for="regName">Name</label>
+        <input id="regName" type="text" placeholder="Your name (e.g. Nauser)" required />
+      </div>
+
+      <div class="form-group">
+        <label for="regBranch">Branch <span class="optional">(Optional)</span></label>
+        <input id="regBranch" type="text" placeholder="Your branch" />
+      </div>
+
+      <div class="form-group">
+        <label for="regSem">Semester <span class="optional">(Optional)</span></label>
+        <input id="regSem" type="text" placeholder="Your semester" />
+      </div>
+
       <div class="modal-actions">
         <button id="registerBtn" class="primary">Register</button>
       </div>
-    </div>
+    </form>
   </div>
+</div>
+
 
   <script src="action.js"></script>
 </body>

@@ -1,11 +1,83 @@
-:root{
+/* Default Light Mode */
+:root {
   --bg:#f6f8fa;
   --card:#ffffff;
+  --card-border:#e5e7eb;   /* subtle gray */
+  --heading:#111827;
+  --subheading:#374151;
   --muted:#6b7280;
   --accent:#0f62fe;
   --shadow: rgba(15,22,39,0.08);
   --radius:12px;
+  --chart-bg: #ffffff;
+  --chart-grid: #e5e7eb;
+  --chart-label: #111827;
+  --chart-canvas-bg: #ffffff;
+  --input-bg: #ffffff;
+  --input-text: #111827;
+  --input-border: #e5e7eb;
+  --list-bg: #ffffff;
+  --list-text: #111827;
+  --list-border: #eef3fb;
+  --list-hover: #f0f4f8;
+  --modal-bg: #ffffff;
+  --modal-text: #111827;
+  --modal-border: #e6eef8;
+  --modal-close: #111827;
+  --textarea-bg: #ffffff;
+  --textarea-text: #111827;
+  --textarea-border: #e6eef8;
+  --eval-bg: #f8fafc;
+  --eval-text: #6b7280;
+  --topbar-bg: linear-gradient(90deg,#ffffff,#f8fafc);
+  --topbar-text: #111827;
+  --tab-bg: transparent;
+  --tab-text: #111827;
+  --tab-active-bg: #0f62fe;
+  --tab-active-text: #ffffff;
 }
+
+/* Dark Mode overrides */
+:root[data-theme="dark"] {
+  --bg:#0d1117;
+  --card:#161b22;
+  --card-border:#ffffff;   /* white border */
+  --heading:#f9fafb;       /* bright white */
+  --subheading:#d1d5db;    /* lighter gray */
+  --muted:#9ca3af;
+  --accent:#3b82f6;
+  --shadow: rgba(0,0,0,0.6);
+  --chart-bg: #161b22;
+  --chart-grid: #808386;
+  --chart-label: #f9fafb;
+  --chart-canvas-bg: #1e293b;
+  --input-bg: #1e293b;
+  --input-text: #f9fafb;
+  --input-border: #374151;
+  --list-bg: #161b22;
+  --list-text: #f9fafb;
+  --list-border: #374151;
+  --list-hover: #1f2937;
+  --modal-bg: #1f2937;
+  --modal-text: #f9fafb;
+  --modal-border: #374151;
+  --modal-close: #f9fafb;
+  --textarea-bg: #161b22;
+  --textarea-text: #f9fafb;
+  --textarea-border: #374151;
+  --eval-bg: #111827;
+  --eval-text: #d1d5db;
+  --topbar-bg: linear-gradient(90deg,#1f2937,#111827);
+  --topbar-text: #f9fafb;
+  --tab-bg: transparent;
+  --tab-text: #f9fafb;
+  --tab-active-bg: #0f62fe;
+  --tab-active-text: #ffffff;
+}
+:root[data-theme="dark"] select {
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%23f9fafb' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+}
+
 
 *{box-sizing:border-box}
 body{
@@ -25,13 +97,13 @@ nav{display:flex;gap:8px}
 .dashboard{display:grid;grid-template-columns:1fr 360px;gap:16px}
 .card{background:var(--card);padding:16px;border-radius:var(--radius);box-shadow:0 6px 18px var(--shadow);min-height:120px}
 .card.large{grid-column:span 1}
-.card.small{min-height:200px}
+/* .card.small{min-height:200px} */
 .stack-grid{display:grid;grid-template-columns:repeat(14,18px);gap:6px;align-items:center}
 .stack-day{width:18px;height:18px;border-radius:4px;background:#e9eef7}
-.stack-day.level-1{background:#cfe5ff}
-.stack-day.level-2{background:#9ecbff}
-.stack-day.level-3{background:#61a9ff}
-.stack-day.level-4{background:#1f7ae2}
+.stack-day.level-1{background:#ffcfcf}
+.stack-day.level-2{background:#fffd9e}
+.stack-day.level-3{background:#61ffc0}
+.stack-day.level-4{background:#38c804}
 .suggestion{min-height:160px}
 .suggestion #suggestions{white-space:pre-line;color:var(--muted)}
 
@@ -55,7 +127,238 @@ textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #e6eef8;font
   width: 100% !important;
   height: 200px !important; /* fixed height */
 }
+/* .card.small {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
 .card.small canvas {
-  width: 100% !important;
-  height: 200px !important; /* fixed height */
+  width: 380px !important;   /* fixed width */
+  height: 420px !important;  /* fixed height */
+  margin-left: 50%;
+  transform: translateX(-50%);
+
+}
+.card.small h3 {
+  margin-bottom: 20px;    /* 20px gap between label and pie chart */
+}
+.card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px var(--shadow);
+  padding: 16px;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--heading);
+  margin-bottom: 8px;
+}
+
+/* Subheadings / smaller text */
+p, .subheading, .muted {
+  color: var(--subheading);
+}
+select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--input-border);
+  background: var(--input-bg);
+  color: var(--input-text);
+  font-size: 14px;
+  font-family: inherit;
+  cursor: pointer;
+  appearance: none; /* remove native styles for consistency */
+}
+
+/* Optional: add a dropdown arrow */
+select {
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%23aaa' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px 16px;
+  padding-right: 36px;
+}
+.question-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.question-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--list-border);
+  background: var(--list-bg);
+  color: var(--list-text);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.question-item:hover {
+  background: var(--list-hover);
+}
+
+/* Mark ticked items differently */
+.question-item.ticked {
+  background: var(--accent);
+  color: #ffffff; /* ensure contrast on ticked item */
+}
+.modal-content {
+  background: var(--modal-bg);
+  color: var(--modal-text);
+  border: 1px solid var(--modal-border);
+}
+
+.modal .close {
+  color: var(--modal-close);
+}
+
+textarea#answerText {
+  background: var(--textarea-bg);
+  color: var(--textarea-text);
+  border: 1px solid var(--textarea-border);
+}
+
+.eval-result {
+  background: var(--eval-bg);
+  color: var(--eval-text);
+}
+body, .modal-content, textarea, .eval-result {
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: var(--topbar-bg);
+  border-bottom: 1px solid var(--modal-border); /* reuse modal border for contrast */
+  color: var(--topbar-text);
+  transition: background 0.3s, color 0.3s;
+}
+
+.brand, .welcome {
+  color: var(--topbar-text);
+}
+
+nav .tab {
+  background: var(--tab-bg);
+  color: var(--tab-text);
+  border: 1px solid transparent;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+nav .tab.active {
+  background: var(--tab-active-bg);
+  color: var(--tab-active-text);
+}
+/* Modal improvements */
+.modal-content.small {
+  max-width: 400px;
+  padding: 24px;
+  border-radius: 12px;
+  background: var(--card);
+  box-shadow: 0 12px 30px var(--shadow);
+  position: relative;
+  transition: background 0.3s, color 0.3s;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 24px;
+  color: var(--text);
+}
+
+.modal-subtitle {
+  font-size: 14px;
+  margin-bottom: 20px;
+  color: var(--muted);
+}
+
+/* Form groups */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  margin-bottom: 4px;
+  color: var(--text);
+  font-weight: 500;
+}
+
+.form-group label .optional {
+  font-weight: 400;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.form-group input {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #e6eef8;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  transition: border-color 0.3s, background 0.3s, color 0.3s;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(15, 98, 254, 0.2);
+}
+
+/* Button */
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal-actions .primary {
+  padding: 10px 18px;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.modal-actions .primary:hover {
+  background: #0053c7;
+}
+
+/* Close button */
+.close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  color: var(--muted);
+  cursor: pointer;
+}
+.close1 {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  color: var(--muted);
+  cursor: pointer;
 }
