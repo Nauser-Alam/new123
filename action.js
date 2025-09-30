@@ -14,18 +14,26 @@ let questionsDB = {
   History: [
     {
       id: "hist-1",
-      title: "Discuss causes of decline of Mauryan Empire.",
-      text: "Discuss causes of decline of Mauryan Empire.",
+      title: "Explain the law making process in India. (100 words)",
+      text: "Explain the law making process in India.(100 words)",
     },
     {
       id: "hist-2",
-      title: "Assess causes of 1857 revolt.",
-      text: "Assess causes of 1857 revolt.",
+      title:
+        "Describe the member distribution and their election process in each of the union and state. (100 words)",
+      text: "Describe the member distribution and their election process in each of the union and state. (100 words)",
     },
     {
       id: "hist-3",
-      title: "Evaluate the role of Ashoka in spread of Buddhism.",
-      text: "Evaluate the role of Ashoka in spread of Buddhism.",
+      title:
+        "Explain the objective resolution of the Indian constitution. (100 words)",
+      text: "Explain the objective resolution of the Indian constitution. (100 words)",
+    },
+    {
+      id: "hist-4",
+      title:
+        "Balance of power takes place in written and unwritten constitution? (100 words)",
+      text: "Balance of power takes place in written and unwritten constitution? (100 words)",
     },
   ],
   Polity: [
