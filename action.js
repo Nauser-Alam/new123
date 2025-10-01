@@ -44,13 +44,15 @@ let questionsDB = {
     },
     {
       id: "poly-2",
-      title: "Discuss fundamental duties and their significance.",
-      text: "Discuss fundamental duties and their significance.",
+      title:
+        "Explain the concept of Constitutionalism and factors affecting it.",
+      text: "Explain the concept of Constitutionalism and factors affecting it.",
     },
     {
       id: "poly-3",
-      title: "Examine the role of Governor in Indian federal system.",
-      text: "Examine the role of Governor in Indian federal system.",
+      title:
+        "Recently, the Supreme Court struck down the Electoral Bonds Scheme (2024 judgment) citing violation of voters’ right to information. In light of this, analyse the constitutional tools of transparency in India. To what extent do they succeed in ensuring accountability? What further reforms are needed to strengthen transparency in political financing?",
+      text: "Recently, the Supreme Court struck down the Electoral Bonds Scheme (2024 judgment) citing violation of voters’ right to information. In light of this, analyse the constitutional tools of transparency in India. To what extent do they succeed in ensuring accountability? What further reforms are needed to strengthen transparency in political financing?",
     },
   ],
   Geography: [
@@ -405,7 +407,10 @@ async function fetchDashboard() {
     const json = await resp.json();
     // expected shape: {scores:{labels:[],values:[]}, subjectStats:{labels:[],values:[]}, suggestions: "..." }
     if (json.scores) {
-      updateLineChart(json.scores.labels || [], json.scores.values || []);
+      updateLineChart(
+        json.scores.labels || [],
+        json.scores.values || json.scores.data || []
+      );
     }
     if (json.subjectStats) {
       updatePieChart(
