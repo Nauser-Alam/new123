@@ -54,6 +54,22 @@ let questionsDB = {
         "Recently, the Supreme Court struck down the Electoral Bonds Scheme (2024 judgment) citing violation of voters’ right to information. In light of this, analyse the constitutional tools of transparency in India. To what extent do they succeed in ensuring accountability? What further reforms are needed to strengthen transparency in political financing?",
       text: "Recently, the Supreme Court struck down the Electoral Bonds Scheme (2024 judgment) citing violation of voters’ right to information. In light of this, analyse the constitutional tools of transparency in India. To what extent do they succeed in ensuring accountability? What further reforms are needed to strengthen transparency in political financing?",
     },
+    {
+      id: "poly-4",
+      title:
+        "Preamble is merely an ornament part of Constitution. Critically examine.",
+      text: "Preamble is merely an ornament part of Constitution. Critically examine.",
+    },
+    {
+      id: "poly-5",
+      title: "Explain Presidental and parliamentary form of givernment.",
+      text: "Explain Presidental and parliamentary form of givernment.",
+    },
+    {
+      id: "poly-6",
+      title: "Critically analyse the preamble of Indian Constitution.",
+      text: "Critically analyse the preamble of Indian Constitution.",
+    },
   ],
   Geography: [
     {
