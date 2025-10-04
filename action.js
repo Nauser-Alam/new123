@@ -70,6 +70,21 @@ let questionsDB = {
       title: "Critically analyse the preamble of Indian Constitution.",
       text: "Critically analyse the preamble of Indian Constitution.",
     },
+    {
+      id: "poly-7",
+      title: "Explain the Sovereign model of India.",
+      text: "Explain the Sovereign model of India.",
+    },
+    {
+      id: "poly-8",
+      title: "Explain the Secular model of India.",
+      text: "Explain the Secular model of India.",
+    },
+    {
+      id: "poly-9",
+      title: "Critically analyze the Socilaist model of India.",
+      text: "Critically analyze the Socilaist model of India.",
+    },
   ],
   Geography: [
     {
