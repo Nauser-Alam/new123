@@ -85,6 +85,12 @@ let questionsDB = {
       title: "Critically analyze the Socilaist model of India.",
       text: "Critically analyze the Socilaist model of India.",
     },
+    {
+      id: "poly-10",
+      title:
+        "The Indian democratic model is often described as a unique blend of representative democracy with federal features, social justice orientation, and constitutional morality. In light of recent political, social and economic developments, critically examine whether the Indian democratic model has been able to balance inclusivity, stability, and accountability.",
+      text: "The Indian democratic model is often described as a unique blend of representative democracy with federal features, social justice orientation, and constitutional morality. In light of recent political, social and economic developments, critically examine whether the Indian democratic model has been able to balance inclusivity, stability, and accountability.",
+    },
   ],
   Geography: [
     {
