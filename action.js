@@ -91,6 +91,24 @@ let questionsDB = {
         "The Indian democratic model is often described as a unique blend of representative democracy with federal features, social justice orientation, and constitutional morality. In light of recent political, social and economic developments, critically examine whether the Indian democratic model has been able to balance inclusivity, stability, and accountability.",
       text: "The Indian democratic model is often described as a unique blend of representative democracy with federal features, social justice orientation, and constitutional morality. In light of recent political, social and economic developments, critically examine whether the Indian democratic model has been able to balance inclusivity, stability, and accountability.",
     },
+    {
+      id: "poly-11",
+      title:
+        "Discuss the role of media in strengthening democracy in India. Critically analyze the challenges faced by Indian media today.",
+      text: "Discuss the role of media in strengthening democracy in India. Critically analyze the challenges faced by Indian media today.",
+    },
+    {
+      id: "poly-12",
+      title:
+        "Discuss the significance of the Preamble in the Constitution of India. Do you think that it is enforceable in a court of law?",
+      text: "Discuss the significance of the Preamble in the Constitution of India. Do you think that it is enforceable in a court of law?",
+    },
+    {
+      id: "poly-13",
+      title:
+        "Discuss each adjective attached to the word ‘Republic’ in the Preamble. Are they defendable in the present circumstances? (2016, GS Paper-2)",
+      text: "Discuss each adjective attached to the word ‘Republic’ in the Preamble. Are they defendable in the present circumstances? (2016, GS Paper-2)",
+    },
   ],
   Geography: [
     {
