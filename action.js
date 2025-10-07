@@ -109,6 +109,12 @@ let questionsDB = {
         "Discuss each adjective attached to the word ‘Republic’ in the Preamble. Are they defendable in the present circumstances? (2016, GS Paper-2)",
       text: "Discuss each adjective attached to the word ‘Republic’ in the Preamble. Are they defendable in the present circumstances? (2016, GS Paper-2)",
     },
+    {
+      id: "poly-14",
+      title:
+        "Discuss the constitutional and legal framework of citizenship in India. Critically analyze the implications of the Citizenship (Amendment) Act, 2019 on India’s secular fabric.",
+      text: "Discuss the constitutional and legal framework of citizenship in India. Critically analyze the implications of the Citizenship (Amendment) Act, 2019 on India’s secular fabric.",
+    },
   ],
   Geography: [
     {
