@@ -115,6 +115,12 @@ let questionsDB = {
         "Discuss the constitutional and legal framework of citizenship in India. Critically analyze the implications of the Citizenship (Amendment) Act, 2019 on India’s secular fabric.",
       text: "Discuss the constitutional and legal framework of citizenship in India. Critically analyze the implications of the Citizenship (Amendment) Act, 2019 on India’s secular fabric.",
     },
+    {
+      id: "poly-15",
+      title:
+        "The Indian Constitution is neither rigid nor flexible, but a synthesis of both. Discuss.",
+      text: "The Indian Constitution is neither rigid nor flexible, but a synthesis of both. Discuss.",
+    },
   ],
   Geography: [
     {
