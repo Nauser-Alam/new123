@@ -121,6 +121,24 @@ let questionsDB = {
         "The Indian Constitution is neither rigid nor flexible, but a synthesis of both. Discuss.",
       text: "The Indian Constitution is neither rigid nor flexible, but a synthesis of both. Discuss.",
     },
+    {
+      id: "poly-16",
+      title:
+        "The Indian Constitution has features of both a unitary and a federal Constitution. Discuss. (GS Paper-2, 2018)",
+      text: "The Indian Constitution has features of both a unitary and a federal Constitution. Discuss. (GS Paper-2, 2018)",
+    },
+    {
+      id: "poly-17",
+      title:
+        "Fundamental Duties are not merely constitutional ideals but essential instruments for ensuring responsible citizenship. Critically analyze in the light of recent socio-political developments in India",
+      text: "Fundamental Duties are not merely constitutional ideals but essential instruments for ensuring responsible citizenship. Critically analyze in the light of recent socio-political developments in India",
+    },
+    {
+      id: "poly-18",
+      title:
+        "“Fundamental Rights are constitutional guarantees, whereas ordinary rights are creations of statutes.”Examine this statement with relevant examples and judicial interpretations.",
+      text: "“Fundamental Rights are constitutional guarantees, whereas ordinary rights are creations of statutes.”Examine this statement with relevant examples and judicial interpretations.",
+    },
   ],
   Geography: [
     {
