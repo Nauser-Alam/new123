@@ -139,6 +139,24 @@ let questionsDB = {
         "“Fundamental Rights are constitutional guarantees, whereas ordinary rights are creations of statutes.”Examine this statement with relevant examples and judicial interpretations.",
       text: "“Fundamental Rights are constitutional guarantees, whereas ordinary rights are creations of statutes.”Examine this statement with relevant examples and judicial interpretations.",
     },
+    {
+      id: "poly-19",
+      title:
+        "“The Doctrine of Eclipse demonstrates the Indian Constitution’s flexibility in harmonizing pre-constitutional laws with the Fundamental Rights regime.” Discuss with reference to judicial interpretations in Bhikaji Narain Dhakras, Deep Chand, and Ambika Mills cases.",
+      text: "“The Doctrine of Eclipse demonstrates the Indian Constitution’s flexibility in harmonizing pre-constitutional laws with the Fundamental Rights regime.” Discuss with reference to judicial interpretations in Bhikaji Narain Dhakras, Deep Chand, and Ambika Mills cases.",
+    },
+    {
+      id: "poly-20",
+      title:
+        "“The Constitution guarantees equality before law, yet it consciously creates exceptions to promote substantive equality and social justice.” Critically examine this statement with reference to Articles 15(1), 15(4), 19(1)(g), 19(6), and the Ninth Schedule.",
+      text: "“The Constitution guarantees equality before law, yet it consciously creates exceptions to promote substantive equality and social justice.” Critically examine this statement with reference to Articles 15(1), 15(4), 19(1)(g), 19(6), and the Ninth Schedule.",
+    },
+    {
+      id: "poly-21",
+      title:
+        "“From Shankari Prasad to Golaknath and beyond, the Supreme Court has redefined the limits of Parliament’s amending power to protect the Constitution’s Basic Structure.” Analyse this statement in the light of judicial developments up to I.R. Coelho v. State of Tamil Nadu (2007).",
+      text: "“From Shankari Prasad to Golaknath and beyond, the Supreme Court has redefined the limits of Parliament’s amending power to protect the Constitution’s Basic Structure.” Analyse this statement in the light of judicial developments up to I.R. Coelho v. State of Tamil Nadu (2007).",
+    },
   ],
   Geography: [
     {
