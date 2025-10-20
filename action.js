@@ -157,6 +157,36 @@ let questionsDB = {
         "“From Shankari Prasad to Golaknath and beyond, the Supreme Court has redefined the limits of Parliament’s amending power to protect the Constitution’s Basic Structure.” Analyse this statement in the light of judicial developments up to I.R. Coelho v. State of Tamil Nadu (2007).",
       text: "“From Shankari Prasad to Golaknath and beyond, the Supreme Court has redefined the limits of Parliament’s amending power to protect the Constitution’s Basic Structure.” Analyse this statement in the light of judicial developments up to I.R. Coelho v. State of Tamil Nadu (2007).",
     },
+    {
+      id: "poly-22",
+      title:
+        "“Article 14 does not mandate absolute equality, but ensures equality among equals.” Examine this statement in the context of reasonable classification and intelligible differentia tests developed by the judiciary.",
+      text: "“Article 14 does not mandate absolute equality, but ensures equality among equals.” Examine this statement in the context of reasonable classification and intelligible differentia tests developed by the judiciary.",
+    },
+    {
+      id: "poly-23",
+      title:
+        "“Freedom of speech and expression under Article 19(1)(a) is not an absolute right; it carries with it duties and responsibilities.” Discuss in light of recent developments concerning freedom of the press, social media regulation, and public order.",
+      text: "“Freedom of speech and expression under Article 19(1)(a) is not an absolute right; it carries with it duties and responsibilities.” Discuss in light of recent developments concerning freedom of the press, social media regulation, and public order.",
+    },
+    {
+      id: "poly-24",
+      title:
+        "“The right to privacy is a fundamental right under Article 21, but it is not absolute and can be restricted for compelling state interests.” Critically analyze this statement with reference to the Puttaswamy judgment and subsequent developments in data protection and surveillance laws.",
+      text: "“The right to privacy is a fundamental right under Article 21, but it is not absolute and can be restricted for compelling state interests.” Critically analyze this statement with reference to the Puttaswamy judgment and subsequent developments in data protection and surveillance laws.",
+    },
+    {
+      id: "poly-25",
+      title:
+        "Critically examine the significance of Article 20 in ensuring fairness in India’s criminal justice system. How do the protections against ex post facto laws, double jeopardy, and self-incrimination reflect the broader ideals of rule of law and human dignity?",
+      text: "Critically examine the significance of Article 20 in ensuring fairness in India’s criminal justice system. How do the protections against ex post facto laws, double jeopardy, and self-incrimination reflect the broader ideals of rule of law and human dignity?",
+    },
+    {
+      id: "poly-26",
+      title:
+        "“The Right to Education under Article 21A is a transformative right, but its realization remains uneven.” Examine the constitutional, legislative, and administrative measures taken to implement this right, highlighting challenges in achieving quality and inclusivity in education.",
+      text: "“The Right to Education under Article 21A is a transformative right, but its realization remains uneven.” Examine the constitutional, legislative, and administrative measures taken to implement this right, highlighting challenges in achieving quality and inclusivity in education.",
+    },
   ],
   Geography: [
     {
